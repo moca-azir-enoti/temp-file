@@ -1,0 +1,48 @@
+■運用LAN
+10.205.147.192	rizadocm01uny
+10.205.147.193	rizadocm02uny
+10.205.147.194	rizadocm03uny
+10.205.147.195	rizadoci01uny
+10.205.147.196	rizadoci02uny
+10.205.147.197	rizadoci03uny
+
+10.205.147.200	rizadocw01uny
+10.205.147.201	rizadocw02uny
+10.205.147.202	rizadocw03uny
+10.205.147.203	rizadocw04uny
+10.205.147.204	rizadocw05uny
+
+10.205.147.141	rizadocw06uny
+10.205.147.142	rizadocw07uny
+10.205.147.143	rizadocw08uny
+10.205.147.144	rizadocw09uny
+10.205.147.145	rizadocw10uny
+
+10.205.147.149	rizadocb01uny
+10.205.147.150	rizadocb02uny
+
+
+■業務LAN
+10.205.146.192	rizadocm01
+10.205.146.193	rizadocm02
+10.205.146.194	rizadocm03
+10.205.146.195	rizadoci01
+10.205.146.196	rizadoci02
+10.205.146.197	rizadoci03
+
+10.205.146.200	rizadocw01
+10.205.146.201	rizadocw02
+10.205.146.202	rizadocw03
+10.205.146.203	rizadocw04
+10.205.146.204	rizadocw05
+
+10.205.146.141	rizadocw06
+10.205.146.142	rizadocw07
+10.205.146.143	rizadocw08
+10.205.146.144	rizadocw09
+10.205.146.145	rizadocw10
+10.205.146.146	rizadocw11
+10.205.146.147	rizadocw12
+10.205.146.148	rizadocw13
+10.205.146.149	rizadocb01
+10.205.146.150	rizadocb02
