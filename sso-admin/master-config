@@ -1,0 +1,49 @@
+oauthConfig:
+  assetPublicURL: https://ocp-master.maint.rizav.acom.co.jp:8443/console/
+  grantConfig:
+    method: auto
+  identityProviders:
+  - challenge: true
+    login: true
+    mappingMethod: claim
+    name: SSO
+    provider:
+      apiVersion: v1
+      ca: redhat-sso.crt
+      claims:
+        email:
+        - email
+        id:
+        - email
+        name:
+        - name
+        preferredUsername:
+        - preferred_username
+      clientID: openshift-sso
+      clientSecret: 752e5b88-55bb-483f-9051-ffdc72a22242
+      kind: OpenIDIdentityProvider
+      urls:
+        authorize: https://secure-sso-redhat-sso.maint.rizav.acom.co.jp/auth/realms/RIZAV.ACOM.LOCAL/protocol/openid-connect/auth
+        token: https://secure-sso-redhat-sso.maint.rizav.acom.co.jp/auth/realms/RIZAV.ACOM.LOCAL/protocol/openid-connect/token
+        userInfo: https://secure-sso-redhat-sso.maint.rizav.acom.co.jp/auth/realms/RIZAV.ACOM.LOCAL/protocol/openid-connect/userinfo
+  - challenge: false
+    login: true
+    mappingMethod: claim
+    name: spnegomaster
+    provider:
+      apiVersion: v1
+      challengeURL: "https://ocp-sso.maint.rizav.acom.co.jp/challenging-proxy/oauth/authorize?${query}"
+      headers:
+      - X-Remote-User
+      kind: RequestHeaderIdentityProvider
+      loginURL: "https://ocp-sso.maint.rizav.acom.co.jp/login-proxy/oauth/authorize?${query}"
+  masterCA: ca-bundle.crt
+  masterPublicURL: https://ocp-master.maint.rizav.acom.co.jp:8443
+  masterURL: https://ocp-master.app.rizav.acom.co.jp:8443
+  sessionConfig:
+    sessionMaxAgeSeconds: 3600
+    sessionName: ssn
+    sessionSecretsFile: /etc/origin/master/session-secrets.yaml
+  tokenConfig:
+    accessTokenMaxAgeSeconds: 86400
+    authorizeTokenMaxAgeSeconds: 500
