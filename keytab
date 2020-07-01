@@ -1,0 +1,1 @@
+ktpass -princ HTTP/secure-sso-redhat-sso.maint.rizav.acom.co.jp@RIZAD.ACOM.LOCAL -mapUser ocp-spnego -pass P@ssw0rd -mapOp set -ptype KRB5_NT_PRINCIPAL -crypto all -out c:\kt-rizdaocm.HTTP.keytab
