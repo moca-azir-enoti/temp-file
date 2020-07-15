@@ -1,0 +1,154 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jp.co.acom.riza.preriza.astron.common</groupId>
+  <artifactId>cics_submod</artifactId>
+  <version>1.0.0</version>
+  <parent>
+    <groupId>jp.co.acom.riza.preriza.astron</groupId>
+    <artifactId>common</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <properties>
+    <project.build.sourceEncoding>MS932</project.build.sourceEncoding>
+  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>prepare-package</id>
+            <phase>prepare-package</phase>
+            <configuration>
+              <target>
+                <property name="compile_classpath" refid="maven.compile.classpath" />
+                <property name="runtime_classpath" refid="maven.runtime.classpath" />
+                <property name="plugin_classpath" refid="maven.plugin.classpath" />
+                <property name="dependency_classpath" refid="maven.dependency.classpath" />
+                <echo message="compile classpath: ${compile_classpath}"/>
+                <echo message="runtime classpath: ${runtime_classpath}"/>
+                <echo message="plugin classpath: ${plugin_classpath}"/>
+                <echo message="dependency classpath: ${dependency_classpath}"/>
+                <echo message="runtime classpath: ${runtime_classpath}"/>
+                <ant antfile="${basedir}/.cobolBuild" inheritRefs="true" />
+              </target> 
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>package</id>
+            <phase>package</phase>
+            <configuration>
+              <target>
+                <exec executable="${MFPRODBASE}/bin/mfjarprogmap">
+                  <arg value="-verbose"/>
+                  <arg value="-jar"/>
+                  <arg value="${basedir}/target/${project.artifactId}-${project.version}.jar"/>
+                </exec>
+              </target> 
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
+            <version>${ant-contrib.version}</version>
+            <exclusions>
+              <exclusion>
+                <groupId>ant</groupId>
+                <artifactId>ant</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-nodeps</artifactId>
+            <version>${ant-nodeps.version}</version>
+          </dependency>
+          <dependency>
+              <groupId>org.slf4j</groupId>
+              <artifactId>slf4j-api</artifactId>
+              <version>1.7.26</version>
+          </dependency>
+          <dependency>
+            <groupId>com.microfocus</groupId>
+            <artifactId>mfcobolrts</artifactId>
+            <version>${mf.version}</version>
+            <optional>true</optional>
+          </dependency>
+          <dependency>
+            <groupId>com.microfocus</groupId>
+            <artifactId>mfcobol</artifactId>
+            <version>${mf.version}</version>
+            <optional>true</optional>
+          </dependency>
+          <dependency>
+            <groupId>com.microfocus</groupId>
+            <artifactId>mfsqljvm</artifactId>
+            <version>${mf.version}</version>
+            <optional>true</optional>
+          </dependency>
+          <dependency>
+            <groupId>com.microfocus</groupId>
+            <artifactId>mfunit</artifactId>
+            <version>${mf.version}</version>
+            <optional>true</optional>
+          </dependency>
+          <dependency>
+            <groupId>com.microfocus</groupId>
+            <artifactId>mfant</artifactId>
+            <version>${mf.version}</version>
+            <optional>true</optional>
+          </dependency>
+          <dependency>
+            <groupId>jp.co.acom.riza.system</groupId>
+            <artifactId>system_utils</artifactId>
+            <version>${acom.version}</version>
+            <exclusions>
+              <exclusion>
+                <groupId>*</groupId>
+                <artifactId>*</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+        <outputDirectory>target/classes</outputDirectory>
+          <resources>
+            <resource>
+              <directory>resources</directory>
+            </resource>
+          </resources>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <!-- For Local Build  -->
+  <dependencies>
+    <dependency>
+      <groupId>jp.co.acom.riza.system</groupId>
+      <artifactId>system_utils</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+</project>
